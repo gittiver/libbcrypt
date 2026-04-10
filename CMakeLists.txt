@@ -11,11 +11,11 @@
 #
 ###################################################################################
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 project(bcrypt)
 
-enable_language(ASM)
+enable_language(CXX C ASM)
 
 set(MYLIB_VERSION_MAJOR 1)
 set(MYLIB_VERSION_MINOR 0)
@@ -35,17 +35,19 @@ endif ()
 
 set( CMAKE_COLOR_MAKEFILE ON )
 
-set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++11 -O3" )
-set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -O3" )
+#set( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++11 -O3" )
+#set( CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -O3" )
 
-set( CMAKE_ASM_FLAGS "${CXXFLAGS} -x assembler-with-cpp")
+#set( CMAKE_ASM_FLAGS "${CXXFLAGS} -x assembler-with-cpp")
 
 set( SRCFILES
+	${CMAKE_CURRENT_SOURCE_DIR}/include/bcrypt/bcrypt.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/bcrypt.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crypt_blowfish.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crypt_gensalt.c
 	${CMAKE_CURRENT_SOURCE_DIR}/src/wrapper.c
-	${CMAKE_CURRENT_SOURCE_DIR}/src/x86.S
+	#${CMAKE_CURRENT_SOURCE_DIR}/src/x86.S
+
 )
 
 if (NOT WIN32)
